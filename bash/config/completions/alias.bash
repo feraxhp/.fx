@@ -70,3 +70,17 @@ _gc_completion() {
 }
 
 complete -o nospace -F _gc_completion gc
+
+_run_completions() {
+    local curr_word="${COMP_WORDS[COMP_CWORD]}"
+    local scripts_dir="$HOME/.fx/bash/config/scripts"
+
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        local available_scripts=$(ls -1 "$scripts_dir" 2>/dev/null)
+        COMPREPLY=( $(compgen -W "$available_scripts" -- "$curr_word") )
+    else
+        COMPREPLY=( $(compgen -f -- "$curr_word") )
+    fi
+}
+
+complete -F _run_completions run

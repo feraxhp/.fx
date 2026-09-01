@@ -6,6 +6,12 @@ mkcd() {
 
 mksh() {
     [[ -z "$1" ]] && return 1;
+    
+    if [[ -d "$1" ]]; then
+        cecho "<error>[error]</> -> '<file>$1</>' <g>Is a directory"
+        return 1
+    fi
+    
     echo -e "#!/usr/bin/env bash\n" > "$1"
     chmod +x "$1"
     
@@ -125,4 +131,16 @@ srsync() {
     else
         rsync -aAXHvP -e ssh "${rsync_args[@]}"
     fi
+}
+
+# Scripts runner
+run() {
+    local script="~/.fx/bash/config/scripts/$1"
+    shift
+    
+    [[ -f "$script" ]] && { 
+        "$script" "$@"
+    } || {
+        cecho "<error>[error]</> <g>The file '<file>$script</>' does not exist</>"
+    }
 }
