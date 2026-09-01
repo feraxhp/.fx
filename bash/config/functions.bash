@@ -135,12 +135,12 @@ srsync() {
 
 # Scripts runner
 run() {
-    local script="~/.fx/bash/config/scripts/$1"
+    local script="$HOME/.fx/bash/config/scripts/$1"
     shift
     
-    [[ -f "$script" ]] && { 
+    if [[ -x "$script" ]]; then 
         "$script" "$@"
-    } || {
+    else
         cecho "<error>[error]</> <g>The file '<file>$script</>' does not exist</>"
-    }
+    fi
 }
