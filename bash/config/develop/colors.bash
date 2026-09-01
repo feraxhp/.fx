@@ -56,10 +56,11 @@ cecho() {
         [/blink]="\e[25m" [/rev]="\e[27m" [/hide]="\e[28m" [/st]="\e[29m"
 
         # Semantic Tags (Themes)
-        [error]="\e[91m\e[1m"   # Bright Red + Bold
-        [warn]="\e[93m\e[1m"    # Bright Yellow + Bold
-        [info]="\e[96m"         # Bright Cyan
-        [success]="\e[92m\e[1m" # Bright Green + Bold
+        [error]="\e[91m\e[1m"       # Bright Red + Bold
+        [warn]="\e[93m\e[1m"        # Bright Yellow + Bold
+        [info]="\e[96m"             # Bright Cyan
+        [success]="\e[92m\e[1m"     # Bright Green + Bold
+        [file]="\e[36m\e[3m\e[4m"   # Cyan + Underline + Italic
 
         # Control Sequences
         [clr-line]="\r\e[2K"    # Carriage return + clear line
