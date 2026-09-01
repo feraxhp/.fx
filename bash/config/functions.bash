@@ -26,6 +26,12 @@ mksh() {
 
 alias bd='cd ..'
 
+pop() {
+    [[ -z "$1" ]] && cecho "<error>[error]</> <g>Nothing to <i>pop"
+    
+    zen "ext+wam:$1"
+}
+
 sclc () {
     # https://www.gnu.org/software/gawk/manual/html_node/Numeric-Functions.html
     local expression="$@"
