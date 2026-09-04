@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cf-session() {
+    local profile="${1:-default}"
+    local cf_dir="$HOME/.config/cf-profiles/$profile"
+    local base_plugins="$HOME/.cf/plugins"
+
+    mkdir -p "$cf_dir/.cf"
+
+    # Symlink base plugins directory if not already linked
+    if [ ! -e "$cf_dir/.cf/plugins" ] && [ -d "$base_plugins" ]; then
+        ln -s "$base_plugins" "$cf_dir/.cf/plugins"
+    fi
+
+    CF_HOME="$cf_dir" PROMPT_EXTRA="[cf:$profile]" $SHELL
+}
+
+(return 2>/dev/null) || { 
+    . "$HOME/.fx/bash/config/develop/colors.bash"
+    cf-session "$@"; 
+}
